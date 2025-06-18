@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradeepta's Traditional Chess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Pradeepta's Traditional Chess</h1>
+        <div id="chessboard">
+            <!-- Chess squares will be dynamically generated here by JavaScript -->
+        </div>
+        <div id="game-status">
+            Current Turn: <span id="current-player-display">White</span>
+            <div id="message"></div>
+        </div>
+        <div class="game-controls"> <!-- New div for controls -->
+            <button id="undo-btn">Undo</button>
+            <button id="redo-btn">Redo</button>
+            <button id="new-game-btn">New Game</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

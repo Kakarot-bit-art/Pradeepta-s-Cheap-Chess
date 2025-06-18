@@ -1,0 +1,172 @@
+:root {
+    /* Colors inspired by the provided image */
+    --background-red-dark: #6D2200; /* Darker red-orange for gradient bottom */
+    --background-red-light: #C04416; /* Lighter red-orange for gradient top */
+    --board-light-square: #FFD700; /* Gold */
+    --board-dark-square: #A0522D; /* Sienna/Russet */
+    --selected-square: #4CAF50; /* A vibrant green from the mandalas */
+    --highlight-move: #FFC107; /* Amber for valid moves */
+    --piece-white: #FFFFFF; /* White for light pieces */
+    --piece-black: #212121; /* Dark grey/black for dark pieces */
+    --text-color: #FDFEFE;
+    --button-bg: #8B4513; /* SaddleBrown */
+    --button-hover-bg: #D2691E; /* Chocolate */
+}
+
+body {
+    font-family: 'Georgia', serif; /* Elegant, classic font */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--background-red-light) 0%, var(--background-red-dark) 100%);
+    color: var(--text-color);
+    /* Subtle mandala pattern derived from image (simplified using CSS) */
+    background-image:
+        radial-gradient(ellipse at 10% 10%, rgba(255,215,0,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse at 90% 10%, rgba(255,215,0,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse at 10% 90%, rgba(255,215,0,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse at 90% 90%, rgba(255,215,0,0.1) 0%, transparent 70%);
+    background-repeat: no-repeat;
+    background-size: 400px 400px;
+}
+
+.game-container {
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border: 2px solid var(--board-light-square); /* Golden border */
+}
+
+h1 {
+    color: var(--board-light-square);
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    width: 480px; /* 8 * 60px */
+    height: 480px; /* 8 * 60px */
+    border: 5px solid var(--board-light-square);
+    margin: 0 auto 20px auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    background-color: var(--board-dark-square); /* Fallback */
+}
+
+.square {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em; /* Size of Unicode chess pieces */
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.square.light {
+    background-color: var(--board-light-square);
+}
+
+.square.dark {
+    background-color: var(--board-dark-square);
+}
+
+.square.selected {
+    background-color: var(--selected-square);
+    border: 2px solid white; /* Adds a clear border for selected piece */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+}
+
+.square.highlight {
+    background-color: var(--highlight-move);
+    animation: pulse 1s infinite alternate; /* Subtle animation for highlight */
+}
+
+@keyframes pulse {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+}
+
+.piece {
+    /* Basic styling for Unicode chess pieces */
+    font-family: 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif; /* Ensures chess symbols display */
+    line-height: 1; /* Adjust to center vertically */
+}
+
+.piece.white {
+    color: var(--piece-white);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adds depth */
+}
+
+.piece.black {
+    color: var(--piece-black);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Adds depth */
+}
+
+#game-status {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+#message {
+    color: var(--board-light-square); /* Golden color for important messages */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#new-game-btn {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#new-game-btn:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    #chessboard {
+        grid-template-columns: repeat(8, 45px);
+        grid-template-rows: repeat(8, 45px);
+        width: 360px; /* 8 * 45px */
+        height: 360px; /* 8 * 45px */
+    }
+    .square {
+        width: 45px;
+        height: 45px;
+        font-size: 2em;
+    }
+    .game-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+/* Add this to your style.css */
+.game-controls {
+    margin-top: 20px; /* Space between status and buttons */
+}
+
+.game-controls button {
+    margin: 0 8px; /* Space between the control buttons */
+   }
+}
